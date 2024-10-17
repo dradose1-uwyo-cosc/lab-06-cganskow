@@ -1,13 +1,10 @@
-# Your Name Here
+# Caitlyn Ganskow
 # UWYO COSC 1010
-# Submission Date
+# 10/17/2024
 # Lab 06
-# Lab Section: 
+# Lab Section: 12 
 # Sources, people worked with, help given to: 
-# your
-# comments
-# here
-
+# https://www.geeksforgeeks.org/python-sort-python-dictionaries-by-key-or-value/ was used to help sort the dictionary.
 
 random_string = """
 jppamiqxegokaizvkyawwurhewtcxohryzptznyuedhhmawpic
@@ -83,13 +80,33 @@ print(len(random_string)) # Print out the size for reference
 #Load all the elements into a dictionary
 #Will need to first declare a dictionary 
 
-# Output: each letter and its corresponding occurrence in alphabetical order
+letter_occurance = {}
 
+for letter in random_string:
+    if letter in letter_occurance:
+        letter_occurance[letter] += 1
+    else:
+        letter_occurance[letter] = 1
+
+sorted_letter_occurance = {}
+
+for key in sorted(letter_occurance):
+    sorted_letter_occurance[key] = letter_occurance[key]
+
+# Output: each letter and its corresponding occurrence in alphabetical order
+print(sorted_letter_occurance)
 print("*"*75)
 # Output which letter occurred the most 
 
-most_occurred = ""
-least_occurred = ""
+most_occurred = sorted_letter_occurance['a']
+least_occurred = sorted_letter_occurance['a']
+
+for value in sorted_letter_occurance.values():
+    if value > most_occurred:
+        most_occurred = value
+    elif value < least_occurred:
+        least_occurred = value
+
 
 print(f"The letter that occurred the most is {most_occurred}")
 print("*"*75)
@@ -98,3 +115,11 @@ print(f"The letter that occurred the most is {least_occurred}")
 print("*"*75)
 
 # Output what the percentage of the string each character is, again in alphabetical
+
+percent_letters = {}
+
+for key in sorted_letter_occurance.keys():
+    percent = (sorted_letter_occurance[key] / 2500) * 100
+    percent_letters[key] = f"{percent}%"
+
+print(percent_letters)
